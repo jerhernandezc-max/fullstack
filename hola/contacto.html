@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Ferretería Los Maestros</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="funciones.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Ferretería Los Maestros</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p class="intro">¿No encontraste algo en el catálogo o quieres cotizar un pedido grande? Escríbenos.</p>
+
+      <form id="form-contacto" novalidate>
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" required>
+
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" required>
+
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono">
+
+        <label for="tipo-cliente">Tipo de cliente</label>
+        <select id="tipo-cliente" required>
+          <option value="">Selecciona una opción</option>
+          <option>Cliente particular</option>
+          <option>Contratista / maestro de obra</option>
+          <option>Contratista con cuenta corriente</option>
+        </select>
+
+        <label for="motivo">Motivo de la consulta</label>
+        <select id="motivo" required>
+          <option value="">Selecciona una opción</option>
+          <option>Consulta de stock</option>
+          <option>Cotización de pedido</option>
+          <option>Despacho a domicilio</option>
+          <option>Cuenta corriente</option>
+          <option>Otro</option>
+        </select>
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" required></textarea>
+
+        <button type="submit">Enviar consulta</button>
+        <p id="mensaje-confirmacion"></p>
+      </form>
+
+      <div class="mapa">
+        <iframe title="Ubicación" src="https://www.openstreetmap.org/export/embed.html?bbox=-71.28%2C-29.92%2C-71.22%2C-29.88&layer=mapnik&marker=-29.9027%2C-71.25"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Ferretería Los Maestros - La Serena, Región de Coquimbo</p>
+    <p>© 2026 Ferretería Los Maestros</p>
+  </footer>
+</body>
+</html>
