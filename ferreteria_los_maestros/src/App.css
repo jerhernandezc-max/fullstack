@@ -1,3 +1,27 @@
+.tarjeta-producto {
+  width: 260px;
+  background: white;
+  border: 1px solid #e2e5e9;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 45, 86, 0.08);
+  padding: 20px 22px;
+}
+.tarjeta-producto h3 {
+  margin: 0 0 6px;
+  color: #002d56;
+}
+.tarjeta-producto p {
+  margin: 0;
+  color: #555;
+}
+
+.lista-productos {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
