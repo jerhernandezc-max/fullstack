@@ -173,12 +173,19 @@ ul.lista-categorias a:hover {
   margin-top: 6px;
 }
 
-.stock {
-  font-size: 0.8rem;
+.etiqueta-stock {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #e8f5e9;
   color: #2f6b3c;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
-.stock.bajo {
+.etiqueta-stock--bajo {
+  background: #fbe9ea;
   color: #a3242f;
 }
 
