@@ -1,17 +1,11 @@
-import { useEffect, useState } from 'react'
-import { cargarProductos } from '../../assets/productos'
+import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useTienda } from '../../context/tiendaContext'
 import TarjetaProducto from '../molecules/TarjetaProducto'
-
-
 
 export default function Productos() {
   const [searchParams] = useSearchParams()
-  const [productos, setProductos] = useState([])
-   useEffect(() => {
-     cargarProductos().then(setProductos)
-    }, [])
-    
+  const { productos, cargandoProductos, errorProductos } = useTienda()
   const categorias = [...new Set(productos.map((p) => p.categoria))].sort()
   const [texto, setTexto] = useState('')
   const [categoria, setCategoria] = useState(searchParams.get('categoria') || 'Todas')
@@ -25,6 +19,9 @@ export default function Productos() {
       p.marca.toLowerCase().includes(busqueda)
     return coincideCategoria && coincideTexto
   })
+
+  if (cargandoProductos) return <p role="status">Cargando productos...</p>
+  if (errorProductos) return <p role="alert">{errorProductos}</p>
 
   return (
     <>

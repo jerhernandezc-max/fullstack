@@ -144,11 +144,27 @@ ul.lista-categorias a:hover {
 }
 
 .producto {
+  display: flex;
+  flex-direction: column;
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 16px;
   text-align: center;
+}
+
+.producto > a {
+  width: 100%;
+}
+
+.producto > button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.producto > .etiqueta-stock {
+  display: block;
+  margin-top: auto;
 }
 
 .producto img {
@@ -168,9 +184,30 @@ ul.lista-categorias a:hover {
 }
 
 .precio {
+  display: block;
   font-weight: 700;
   color: #cc5200;
   margin-top: 6px;
+}
+
+.precio-original {
+  color: #777777;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.precio-original-linea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.insignia-oferta {
+  color: #a3242f;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .etiqueta-stock {

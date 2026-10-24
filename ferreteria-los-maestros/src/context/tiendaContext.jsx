@@ -1,9 +1,10 @@
-import { createContext, useContext } from 'react'
-import productosIniciales from '../assets/productos'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { cargarProductos } from '../assets/productos'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { precioFinal } from '../utils/precios'
 
 const TiendaContext = createContext(null)
+const CLAVE_INVENTARIO = 'lm_inventario'
 
 const adminInicial = {
   nombre: 'Administrador',
@@ -13,11 +14,42 @@ const adminInicial = {
 }
 
 export function TiendaProvider({ children }) {
-  const [productos, setProductos] = useLocalStorage('lm_inventario', productosIniciales)
+  const [hayInventarioGuardado] = useState(() => {
+    try {
+      return localStorage.getItem(CLAVE_INVENTARIO) !== null
+    } catch (error) {
+      console.error('No se pudo acceder al inventario guardado.', error)
+      return false
+    }
+  })
+  const [productos, setProductos] = useLocalStorage(CLAVE_INVENTARIO, [])
+  const [cargandoProductos, setCargandoProductos] = useState(!hayInventarioGuardado)
+  const [errorProductos, setErrorProductos] = useState('')
   const [carrito, setCarrito] = useLocalStorage('lm_carrito', []) // [{ codigo, cantidad }]
   const [usuarios, setUsuarios] = useLocalStorage('lm_usuarios', [adminInicial])
   const [sesion, setSesion] = useLocalStorage('lm_sesion', null) // email del usuario activo
   const [pedidos, setPedidos] = useLocalStorage('lm_pedidos', [])
+
+  useEffect(() => {
+    if (hayInventarioGuardado) return
+
+    let vigente = true
+    cargarProductos()
+      .then((cargados) => {
+        if (vigente) setProductos(cargados)
+      })
+      .catch((error) => {
+        console.error('No se pudieron cargar los productos.', error)
+        if (vigente) setErrorProductos('No se pudieron cargar los productos. Intenta recargar la página.')
+      })
+      .finally(() => {
+        if (vigente) setCargandoProductos(false)
+      })
+
+    return () => {
+      vigente = false
+    }
+  }, [hayInventarioGuardado, setProductos])
 
   const usuario = usuarios.find((u) => u.email === sesion) ?? null
 
@@ -160,7 +192,7 @@ export function TiendaProvider({ children }) {
   }
 
   const valor = {
-    productos, guardarProducto, eliminarProducto,
+    productos, cargandoProductos, errorProductos, guardarProducto, eliminarProducto,
     lineas, totalCarrito, cantidadCarrito, agregar, cambiarCantidad, quitar, vaciar,
     usuario, login, registrar, logout,
     pedidos, crearPedido, cambiarEstadoPedido,
