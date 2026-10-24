@@ -10,7 +10,7 @@ Región de Coquimbo, con 22 años de trayectoria. Es atendido por el dueño,
 su hijo y 2 empleados de planta. Vende materiales de construcción, 
 herramientas eléctricas y manuales, gasfitería, electricidad y artículos de ferretería general.
 
-Estructura: 
+Estructura: Atomic Design
     
 --/src
     --/assets
