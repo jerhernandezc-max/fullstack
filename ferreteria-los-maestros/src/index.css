@@ -327,3 +327,65 @@ footer {
     align-items: flex-start;
   }
 }
+
+
+/* vista pc */
+.menu-toggle {
+  display: none;
+  margin: 0;
+  padding: 4px 12px;
+  background: none;
+  border: 1px solid white;
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+
+.menu-toggle:hover {
+  background: #4a4a4a;
+}
+
+/* tablests */
+@media (max-width: 1080px) {
+  header {
+    padding: 12px 16px;
+  }
+
+  header h1 {
+    font-size: 1.15rem;
+  }
+
+  header nav {
+    gap: 4px 12px;
+  }
+
+  header nav a,
+  header nav .btn-link {
+    font-size: 0.85rem;
+  }
+}
+
+/* vista selu */
+@media (max-width: 700px) {
+  header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  header nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #555555;
+  }
+
+  header nav.abierto {
+    display: flex;
+  }
+}
